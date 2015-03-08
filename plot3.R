@@ -7,9 +7,8 @@ names(x) <- c("Date", "Time", "Global_active_power", "Global_reactive_power",
               "Sub_metering_3")
 x$DateTime <- strptime(paste(x$Date, x$Time), format="%d/%m/%Y %H:%M:%S",
                        tz="EST")
-x$Global_active_power <- as.numeric(x$Global_active_power)
 
-Sys.setlocale("LC_TIME", "C")
+Sys.setlocale("LC_TIME", "C")  # Remove localization of weekday names
 png(filename = "plot3.png", width= 480, height = 480, bg=NA)
 with(x, {
     plot(DateTime, Sub_metering_1, type = "l", xlab = "",
